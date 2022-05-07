@@ -7,9 +7,9 @@ services:
     ports:
       - "10051:10051"
     environment:
-      - DB_SERVER_HOST: mysql
-      - MYSQL_USER: zabbix
-      - MYSQL_PASSWORD: zabbix
+      - DB_SERVER_HOST: "mysql"
+      - MYSQL_USER: "zabbix"
+      - MYSQL_PASSWORD: "zabbix"
 
   mysql:
     image: mysql:oracle
@@ -19,8 +19,8 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD: "yes"
-      - MYSQL_USER: zabbix
-      - MYSQL_PASSWORD: zabbix
+      - MYSQL_USER: "zabbix"
+      - MYSQL_PASSWORD: "zabbix"
     volumes:
       - mysql:/var/lib/mysql
 
