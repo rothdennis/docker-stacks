@@ -3,13 +3,15 @@ services:
   zabbix:
     image: zabbix/zabbix-server-mysql
     container_name: zabbix
-    restart: unsless-stopped
+    restart: unless-stopped
     ports:
       - "10051:10051"
     environment:
       - DB_SERVER_HOST = mysql
       - MYSQL_USER = zabbix
       - MYSQL_PASSWORD = zabbix
+    depends_on:
+      - "mysql"
 
   mysql:
     image: mysql:oracle
