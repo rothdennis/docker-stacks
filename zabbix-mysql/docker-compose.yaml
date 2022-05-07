@@ -23,6 +23,7 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: yes
       MYSQL_USER: zabbix
       MYSQL_PASSWORD: zabbix
+      MYSQL_DATABASE: zabbix
     volumes:
       - mysql:/var/lib/mysql
 
