@@ -1,21 +1,36 @@
 services:
 
-  zabbix:
+  zabbix-web:
     image: zabbix/zabbix-web-nginx-mysql
-    container_name: zabbix
+    container_name: zabbix-web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      ZBX_SERVER_HOST: zabbix-server
+      ZBX_SERVER_PORT: 10051
+      DB_SERVER_HOST: zabbix-mysql
+      DB_SERVER_PORT: 3306
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix
+      MYSQL_DATABASE: zabbix
+
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql
+    container_name: zabbix-server
     restart: unless-stopped
     ports:
       - "10051:10051"
     environment:
-      DB_SERVER_HOST: mysql
+      DB_SERVER_HOST: zabbix-mysql
       MYSQL_USER: zabbix
       MYSQL_PASSWORD: zabbix
     depends_on:
       - "mysql"
 
-  mysql:
+  zabbix-mysql:
     image: mysql:oracle
-    container_name: mysql
+    container_name: zabbix-mysql
     restart: unless-stopped
     ports:
       - "3306:3306"
